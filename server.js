@@ -32,7 +32,7 @@ app.use(express.json())
 
 //  ------ GET -----
 app.get('/api/Item', (req, res) =>{
-  database.allItem((error, Item) => {
+  database.allItems((error, Item) => {
     // 2
   if (error) {
     res.send({error})
