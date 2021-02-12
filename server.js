@@ -22,6 +22,8 @@ app.use('/', function(req, res, next) {
   next();
 });
 
+
+// GETS ALL ITEMS 
 let Item = [
   {
     id: 1,
@@ -47,40 +49,40 @@ app.get('/api/Item', (req, res) => {
   })
 })
 
-app.listen(8080, () => {
-  console.log("The server is listening on port 8080 :)")
-})
+// app.listen(8080, () => {
+//   console.log("The server is listening on port 8080 :)")
+// })
 
-app.post('/api/Item', (req, res) => {
-  const task = req.body
+// app.post('/api/Item', (req, res) => {
+//   const task = req.body
   
-  // 1
-  database.createItems(item, (error, taskId) => {
+//   // 1
+//   database.createItems(item, (error, taskId) => {
     
-    // 2
-    if (error) {
-      res.send({error})
-      return
-    }
+//     // 2
+//     if (error) {
+//       res.send({error})
+//       return
+//     }
 
-    // 3
-    item.id = itemId
+//     // 3
+//     item.id = itemId
 
-    // 4
-    res.send({item})
-  })
-})
+//     // 4
+//     res.send({item})
+//   })
+// })
 
-  app.delete('/api/tasks/:id', (req, res) => {
-    const taskId = parseInt(req.params.id)
-    const result = database.deleteTask(taskId)
-    res.send(result) 
-  })
+//   app.delete('/api/tasks/:id', (req, res) => {
+//     const taskId = parseInt(req.params.id)
+//     const result = database.deleteTask(taskId)
+//     res.send(result) 
+//   })
   
 
-  app.patch('/api/tasks/:id', (req, res) => {
-    const taskId = parseInt(req.params.id) 
-    const data = req.body 
-    const result = database.updateTask(taskId, data)
-    res.send(result) 
-  })
+//   app.patch('/api/tasks/:id', (req, res) => {
+//     const taskId = parseInt(req.params.id) 
+//     const data = req.body 
+//     const result = database.updateTask(taskId, data)
+//     res.send(result) 
+//   })

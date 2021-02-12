@@ -6,7 +6,6 @@ const dbDetails = {
     user: process.env.MYSQL_USERNAME || 'pantro_user',
     password: process.env.MYSQL_PASSWORD || 'MyNewPass4!',
     database: process.env.MYSQL_DATABASE || 'pantro',
-    port: 8080
 }
 
 // const connection = mysql.createConnection(dbDetails)
