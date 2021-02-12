@@ -1,4 +1,4 @@
-const mysql = require('mysql')
+const mysql = require('mysql');
 
 const dbDetails = {
     connectionLimit: 10,
@@ -14,21 +14,24 @@ const connectionString =
 "mysql://yt85lfcoavbh8sr1:gkcafmcyesosl9sh@td5l74lo6615qq42.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/lpjj9xynz4wvr9hx";
 const connection = mysql.createConnection(connectionString);
 
-function allItems() {
+//--------------GET ALL ITEMS -------------------------
+
+function allItems(callback) {
   // 1
   const query = `
     SELECT * 
     FROM Item
-  `
+  `;
 
   // 2
-  connection.query(query, null, (error, results, fields) => {
+  connection.query(query, null, (error, results) => {
     
     // 3
-    console.log(error, results)
-  })
+    callback(error, results);
+    console.log(error, results);
+  });
 }
-exports.allItems = allItems
+exports.allItems = allItems;
 
 function createItem(item) {
 
