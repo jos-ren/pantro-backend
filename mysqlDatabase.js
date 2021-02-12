@@ -6,13 +6,14 @@ const dbDetails = {
     user: process.env.MYSQL_USERNAME || 'pantro_user',
     password: process.env.MYSQL_PASSWORD || 'MyNewPass4!',
     database: process.env.MYSQL_DATABASE || 'pantro',
+    port: 8080
 }
 
-const connection = mysql.createConnection(dbDetails)
+// const connection = mysql.createConnection(dbDetails)
 
-// const connectionString = 
-// "mysql://yt85lfcoavbh8sr1:gkcafmcyesosl9sh@td5l74lo6615qq42.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/lpjj9xynz4wvr9hx";
-// const connection = mysql.createConnection(connectionString);
+const connectionString = 
+"mysql://yt85lfcoavbh8sr1:gkcafmcyesosl9sh@td5l74lo6615qq42.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/lpjj9xynz4wvr9hx";
+const connection = mysql.createConnection(connectionString);
 
 function allItems() {
   // 1
