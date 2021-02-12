@@ -4,49 +4,43 @@ const dbDetails = {
     connectionLimit: 10,
     host: process.env.MYSQL_HOST || 'localhost',
     user: process.env.MYSQL_USERNAME || 'pantro_user',
-    password: process.env.MYSQL_PASSWORD || 'YourPassword!@',
+    password: process.env.MYSQL_PASSWORD || 'MyNewPass4!',
     database: process.env.MYSQL_DATABASE || 'pantro',
 }
 
-const connectionString = 
-"mysql://yt85lfcoavbh8sr1:gkcafmcyesosl9sh@td5l74lo6615qq42.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/lpjj9xynz4wvr9hx";
-const connection = mysql.createConnection(connectionString)
+const connection = mysql.createConnection(dbDetails)
 
-function allTasks(callback) {
-    const query = `
-      SELECT * 
-      FROM tasks
-    `
-    connection.query(query, null, (error, results, fields) => {
-      callback(error, results)
-    })
-  }
-exports.allTasks = allTasks
+// const connectionString = 
+// "mysql://yt85lfcoavbh8sr1:gkcafmcyesosl9sh@td5l74lo6615qq42.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/lpjj9xynz4wvr9hx";
+// const connection = mysql.createConnection(connectionString);
 
-function createTask(task, callback) {
-    // 1
-    const query = `
-      INSERT INTO tasks (content, completed)
-      VALUES (?, ?)
-    `
-  
-    // 2
-    const params = [task.content, task.completed]
-  
+function allItems() {
+  // 1
+  const query = `
+    SELECT * 
+    FROM Item
+  `
+
+  // 2
+  connection.query(query, null, (error, results, fields) => {
+    
     // 3
-    connection.query(query, params, function (error, result, fields) {
-      callback(error, result.insertId)
-    })
-  }
+    console.log(error, results)
+  })
+}
+exports.allItems = allItems
 
-exports.createTask = createTask
-
-function deleteTask(taskId) {
+function createItem(item) {
 
 }
-exports.deleteTask = deleteTask
+exports.createItem = createItem
 
-function completeTask(taskId, data) {
+function deleteItem(itemId) {
 
 }
-exports.completeTask = completeTask
+exports.deleteItem = deleteItem
+
+function completeItem(itemId, data) {
+
+}
+exports.completeItem = completeItem
