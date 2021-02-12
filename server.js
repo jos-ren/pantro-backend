@@ -1,8 +1,11 @@
+// import express framework 
 const express = require('express') 
+
+// connect backend database 
 const database = require('./mysqlDatabase.js')
 
+// create an object to define all routes 
 const app = express() 
-app.use(express.json())
 
 app.use('/', function(req, res, next) {
   //var allowedOrigins = ['http://localhost:3000', 'http://localhost:6006', "https://*"];
@@ -22,67 +25,27 @@ app.use('/', function(req, res, next) {
   next();
 });
 
+// for express endpoints to receive HTTP body data
+app.use(express.json())
 
 // GETS ALL ITEMS 
-let Item = [
-  {
-    id: 1,
-    Name: "Cucumber",
-    Expiry:"2000-05-12",
-    Amount:3,
-    StorageID:1,
-    ShelfID:1,
-    NutritionID:1
-  },
-]
 
-app.get('/api/Item', (req, res) => {
-  // 1
-  database.allItems((error, Item) => {
+//  ------ GET -----
+app.get('/api/Item', (req, res) =>{
+  database.allItem((error, meds) => {
     // 2
-    if (error) {
-      res.send({error})
-      return
-    }
+  if (error) {
+    res.send({error})
+    return
+  }
     // 3
-    res.send({Item})
-  })
+  res.send({Item})
+})
 })
 
-// app.listen(8080, () => {
-//   console.log("The server is listening on port 8080 :)")
-// })
-
-// app.post('/api/Item', (req, res) => {
-//   const task = req.body
+//  ------ LISTEN ON PORT ------
   
-//   // 1
-//   database.createItems(item, (error, taskId) => {
-    
-//     // 2
-//     if (error) {
-//       res.send({error})
-//       return
-//     }
-
-//     // 3
-//     item.id = itemId
-
-//     // 4
-//     res.send({item})
-//   })
-// })
-
-//   app.delete('/api/tasks/:id', (req, res) => {
-//     const taskId = parseInt(req.params.id)
-//     const result = database.deleteTask(taskId)
-//     res.send(result) 
-//   })
-  
-
-//   app.patch('/api/tasks/:id', (req, res) => {
-//     const taskId = parseInt(req.params.id) 
-//     const data = req.body 
-//     const result = database.updateTask(taskId, data)
-//     res.send(result) 
-//   })
+const port = process.env.PORT || 3306
+app.listen(port,() => {
+  console.log(`listening on port ${port}`)
+})
