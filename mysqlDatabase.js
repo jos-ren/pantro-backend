@@ -8,7 +8,9 @@ const dbDetails = {
     database: process.env.MYSQL_DATABASE || 'pantro',
 }
 
-const connection = mysql.createConnection(dbDetails)
+const connectionString = 
+"mysql://yt85lfcoavbh8sr1:gkcafmcyesosl9sh@td5l74lo6615qq42.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/lpjj9xynz4wvr9hx";
+const connection = mysql.createConnection(connectionString)
 
 function allTasks(callback) {
     const query = `
